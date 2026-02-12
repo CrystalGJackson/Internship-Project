@@ -31,7 +31,7 @@ def verify_found_results_text(context, search_word):
     assert search_word.lower() in context.driver.current_url.lower(), \
         f'Expected query not in {context.driver.current_url.lower()}'
 
-# Test 1 Internship
+# Task 2 Internship
 
 @given('Open the main page')
 def open_google(context):
