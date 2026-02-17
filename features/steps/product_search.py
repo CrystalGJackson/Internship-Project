@@ -13,9 +13,6 @@ SEARCH_SUBMIT = (By.NAME, 'btnK')
 def open_google(context):
     context.driver.get('https://www.google.com/')
 
-@given('Open Target main page')
-def open_main(context):
-    context.app.main_page.open_main_page()
 
 @when('Search for {product}')
 def search_product(context, product):
@@ -49,30 +46,30 @@ def verify_found_results_text(context, search_word):
 
 @given('Open the main page')
 def open_google(context):
-    context.driver.get('https://soft.reelly.io')
+    # context.driver.get('https://soft.reelly.io')
+    context.app.main_page.open_main_page()
 
 @when('Log in to the page')
 def click_login(context):
     sleep(5)
-    context.driver.find_element(By.CSS_SELECTOR,"[class='input w-input']").send_keys('crystalgjackson1987@gmail.com')
-    sleep(2)
-    context.driver.find_element(By.CSS_SELECTOR,"[data-name='Password']").send_keys('Bcbs2026!')
-    sleep(2)
-    context.driver.find_element(By.CSS_SELECTOR,"[class='login-button w-button']").click()
+    context.app.login_page.login()
+    # context.driver.find_element(By.CSS_SELECTOR,"[class='input w-input']").send_keys('crystalgjackson1987@gmail.com')
+    # sleep(2)
+    # context.driver.find_element(By.CSS_SELECTOR,"[data-name='Password']").send_keys('Bcbs2026!')
+    # sleep(2)
+    # context.driver.find_element(By.CSS_SELECTOR,"[class='login-button w-button']").click()
 
 
 @then('Click on "settings" at the left side menu')
 def click_settings(context):
     sleep(5)
-    context.driver.find_element(By.CSS_SELECTOR,"[wized='userName']").click()
-    # elements[1].click()
-    # context.driver.find_element(By.CSS_SELECTOR,"[href='/settings']").click()
-    # sleep(5)
-
+    context.driver.find_element(By.XPATH, "//span[text()='Settings']").click()
+    # context.app.login_page.click()
+    sleep(5)
 @then('Click on the verification option')
 def click_verification(context):
     sleep(3)
-    context.driver.find_elements(By.CSS_SELECTOR,"[href='/verification/step']")
+    context.driver.find_element(By.XPATH, "//a[contains(@href, 'verification') and contains(@class, 'page-setting')]").click()
 
 @then('Verify the right page opens')
 def verify_right_page(context):
@@ -80,8 +77,12 @@ def verify_right_page(context):
     context.driver.find_elements(By.CSS_SELECTOR,"[class='setting-text']")
 
 @then('Verify "upload image" and "Next step" buttons are available')
-def verify_next_step(context):
+def verify_next_steps(context):
+    # context.driver.find_element(By.CSS_SELECTOR,"[class='upload-button-2']")
     sleep(3)
-    context.driver.find_elements(By.CSS_SELECTOR,"[class='upload-button-2']")
     actual_text = context.driver.find_element(By.CSS_SELECTOR,"[class='next-step--']").text
-    assert'verify "upload image" and "Next step" buttons are available' in actual_text,f'expected verify "upload image" and "Next step" buttons are available text not in {'actual_text'}'
+    assert "Next step" in actual_text, f'expected Next step but got {actual_text}'
+    sleep(3)
+    actual_text = context.driver.find_element(By.CSS_SELECTOR,"[class='upload-button-2']").text
+    assert "Upload image" in actual_text, f'expected Upload image but got {actual_text}'
+
