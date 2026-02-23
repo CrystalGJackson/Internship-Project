@@ -13,6 +13,10 @@ SEARCH_SUBMIT = (By.NAME, 'btnK')
 def open_google(context):
     context.driver.get('https://www.google.com/')
 
+# @given('Open Firefox page')
+# def open_firefox(context):
+#     context.driver.get('https://www.Firefox.com/')
+
 
 @when('Search for {product}')
 def search_product(context, product):
@@ -49,6 +53,13 @@ def open_google(context):
     # context.driver.get('https://soft.reelly.io')
     context.app.main_page.open_main_page()
 
+# @given('Open Firefox page')
+# def open_firefox(context):
+#     sleep(5)
+#     context.driver.get('https://soft.reelly.io')
+
+
+
 @when('Log in to the page')
 def click_login(context):
     sleep(5)
@@ -62,27 +73,27 @@ def click_login(context):
 
 @then('Click on "settings" at the left side menu')
 def click_settings(context):
-    sleep(5)
+    sleep(10)
     context.driver.find_element(By.XPATH, "//span[text()='Settings']").click()
     # context.app.login_page.click()
-    sleep(5)
+    sleep(10)
 @then('Click on the verification option')
 def click_verification(context):
-    sleep(3)
+    sleep(10)
     context.driver.find_element(By.XPATH, "//a[contains(@href, 'verification') and contains(@class, 'page-setting')]").click()
 
 @then('Verify the right page opens')
 def verify_right_page(context):
-    sleep(3)
+    sleep(10)
     context.driver.find_elements(By.CSS_SELECTOR,"[class='setting-text']")
 
 @then('Verify "upload image" and "Next step" buttons are available')
 def verify_next_steps(context):
     # context.driver.find_element(By.CSS_SELECTOR,"[class='upload-button-2']")
-    sleep(3)
+    sleep(10)
     actual_text = context.driver.find_element(By.CSS_SELECTOR,"[class='next-step--']").text
     assert "Next step" in actual_text, f'expected Next step but got {actual_text}'
-    sleep(3)
+    sleep(10)
     actual_text = context.driver.find_element(By.CSS_SELECTOR,"[class='upload-button-2']").text
     assert "Upload image" in actual_text, f'expected Upload image but got {actual_text}'
 
