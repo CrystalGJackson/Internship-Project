@@ -73,27 +73,27 @@ def click_login(context):
 
 @then('Click on "settings" at the left side menu')
 def click_settings(context):
-    sleep(10)
+    sleep(15)
     context.driver.find_element(By.XPATH, "//span[text()='Settings']").click()
     # context.app.login_page.click()
-    sleep(10)
+    sleep(15)
 @then('Click on the verification option')
 def click_verification(context):
-    sleep(10)
+    sleep(15)
     context.driver.find_element(By.XPATH, "//a[contains(@href, 'verification') and contains(@class, 'page-setting')]").click()
 
 @then('Verify the right page opens')
 def verify_right_page(context):
-    sleep(10)
+    sleep(15)
     context.driver.find_elements(By.CSS_SELECTOR,"[class='setting-text']")
 
 @then('Verify "upload image" and "Next step" buttons are available')
 def verify_next_steps(context):
     # context.driver.find_element(By.CSS_SELECTOR,"[class='upload-button-2']")
-    sleep(10)
+    sleep(15)
     actual_text = context.driver.find_element(By.CSS_SELECTOR,"[class='next-step--']").text
     assert "Next step" in actual_text, f'expected Next step but got {actual_text}'
-    sleep(10)
+    sleep(15)
     actual_text = context.driver.find_element(By.CSS_SELECTOR,"[class='upload-button-2']").text
     assert "Upload image" in actual_text, f'expected Upload image but got {actual_text}'
 
