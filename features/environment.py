@@ -56,6 +56,10 @@ def browser_init(context, scenario_name):
     options.set_capability('bstack:options', bstack_options)
     context.driver = webdriver.Remote(command_executor=url, options=options)
 
+# # Allure
+# behave -f allure_behave.formatter:AllureFormatter -o test_results/ features/tests/product_search.feature
+
+# allure serve test_results/
 
 
     context.driver.maximize_window()
