@@ -80,5 +80,3 @@ def after_step(context, step):
 def after_scenario(context, feature):
     context.driver.quit()
 
-# crystal_3bUM7P
-# aynUBfdawUsZsjBaD35B
