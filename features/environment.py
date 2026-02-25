@@ -5,7 +5,6 @@ from selenium.webdriver.firefox.service import Service
 from selenium.webdriver.chrome.options import Options
 from webdriver_manager.chrome import ChromeDriverManager
 from app.application import Application
-from webdriver_manager.firefox import FirefoxDriverManager
 
 
 def browser_init(context, scenario_name):
@@ -46,17 +45,16 @@ def browser_init(context, scenario_name):
 #
     bs_user = 'crystal_3bUM7P'
     bs_key = 'aynUBfdawUsZsjBaD35B'
-
-    url = f'http:://{bs_user}:{bs_key}@hub-cloud.browserstack.com/wd/hub'
+    url = f'http://{bs_user}:{bs_key}@hub-cloud.browserstack.com/wd/hub'
     options = Options()
     bstack_options = {
-        "os" : "Windows",
+        'os' : "Windows",
         "osVersion" : "11",
-        'browserName' : 'Chrome',
+        'browserName' : 'Firefox',
         'sessionName' : scenario_name
     }
     options.set_capability('bstack:options', bstack_options)
-    context.driver = webdriver.Remote(command_executor=url,options=options)
+    context.driver = webdriver.Remote(command_executor=url, options=options)
 
 
 
@@ -81,3 +79,6 @@ def after_step(context, step):
 
 def after_scenario(context, feature):
     context.driver.quit()
+
+# crystal_3bUM7P
+# aynUBfdawUsZsjBaD35B
