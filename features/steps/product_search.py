@@ -2,6 +2,8 @@ from selenium.webdriver.common.by import By
 from behave import given, when, then
 from time import sleep
 
+from selenium.webdriver.support.wait import WebDriverWait
+
 CART_ICON = (By.CSS_SELECTOR,"[data-test='@web/CartIcon']")
 HEADER_LINKS = (By.CSS_SELECTOR, "[data-test*='@web/GlobalHeader/UtilityHeader/']")
 
@@ -74,25 +76,33 @@ def click_login(context):
 
 
 # @then('Click on "settings" at the left side menu')
-# def click_settings(context):
+# def click_menu(context):
 #     sleep(15)
 #     context.driver.find_element(By.XPATH, "//span[text()='Settings']").click()
 #     # context.app.login_page.click()
 #     sleep(15)
 
+# @then('Click on "menu" at the top right side')
+# def click_menu(context):
+#     sleep(15)
+#     context.driver.find_element(By.XPATH, "//div[contains(@class='new-market-menu mobil']").click()
+#     # context.app.login_page.click()
+#     sleep(15)
+#
+
 @then('Click on "market offers"')
 def click_on_market_offers(context):
     sleep(15)
-    context.driver.find_element(By.CSS_SELECTOR,'[class="font-medium text-xs whitespace-nowrap pt-8"]').click()
-    sleep(25)
+    context.driver.find_element(By.XPATH, "//div[@class='border-8 border-white absolute bottom-7 bg-black rounded-full p-2.5']").click()
+    sleep(15)
 
-@then('Click on "menu" at the top left')
+
+@then('Click on "menu" at the top right side')
 def click_menu(context):
     sleep(15)
-    context.driver.find_elements(By.CSS_SELECTOR,'[class="new-market-menu-button _1 w-inline-block"]').click()
+    context.driver.find_element(By.XPATH, "//a[@class='new-market-menu-button _1 w-inline-block']").click()
     # context.app.login_page.click()
     sleep(15)
-
 
 @then('Click on the verification option')
 def click_verification(context):
