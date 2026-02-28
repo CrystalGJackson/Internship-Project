@@ -106,8 +106,16 @@ def click_menu(context):
 
 @then('Click on the verification option')
 def click_verification(context):
-    sleep(15)
-    context.driver.find_element(By.XPATH, "//a[contains(@href, 'verification') and contains(@class, 'page-setting')]").click()
+    sleep(3)
+    element = context.driver.find_element(By.XPATH, "//a[contains(@href, 'verification') and contains(@class, 'page-setting')]")
+    context.driver.execute_script("arguments[0].scrollIntoView({block: 'center'});", element)
+    element.click()
+
+
+# @then('Click on the verification option')
+# def click_verification(context):
+#     sleep(15)
+#     context.driver.find_element(By.XPATH, "//a[contains(@href, 'verification') and contains(@class, 'page-setting')]").click()
 
 @then('Verify the right page opens')
 def verify_right_page(context):
