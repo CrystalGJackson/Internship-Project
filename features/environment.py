@@ -11,7 +11,7 @@ def browser_init(context, scenario_name):
     """
     :param context: Behave context
     """
-    #context.driver = webdriver.Chrome()
+    # context.driver = webdriver.Chrome()
     # context.driver = webdriver.Firefox()
     #context.driver = webdriver.Safari()
     # context.driver.maximize_window()
@@ -41,28 +41,37 @@ def browser_init(context, scenario_name):
 
 
 
-# Browserstack
-#
-    bs_user = 'crystal_3bUM7P'
-    bs_key = 'aynUBfdawUsZsjBaD35B'
-    url = f'http://{bs_user}:{bs_key}@hub-cloud.browserstack.com/wd/hub'
-    options = Options()
-    bstack_options = {
-        'os' : "Windows",
-        "osVersion" : "11",
-        'browserName' : 'Firefox',
-        'sessionName' : scenario_name
-    }
-    options.set_capability('bstack:options', bstack_options)
-    context.driver = webdriver.Remote(command_executor=url, options=options)
+# # Browserstack
+# #
+#     bs_user = 'crystal_3bUM7P'
+#     bs_key = 'aynUBfdawUsZsjBaD35B'
+#     url = f'http://{bs_user}:{bs_key}@hub-cloud.browserstack.com/wd/hub'
+#     options = Options()
+#     bstack_options = {
+#         'os' : "Windows",
+#         "osVersion" : "11",
+#         'browserName' : 'Firefox',
+#         'sessionName' : scenario_name
+#     }
+#     options.set_capability('bstack:options', bstack_options)
+#     context.driver = webdriver.Remote(command_executor=url, options=options)
 
 # # Allure
 # behave -f allure_behave.formatter:AllureFormatter -o test_results/ features/tests/product_search.feature
 
 # allure serve test_results/
 
+    # Mobile Emulation
 
-    context.driver.maximize_window()
+
+# from selenium import webdriver
+    mobile_emulation = { "deviceName": "iPhone 12 Pro" }
+    chrome_options = webdriver.ChromeOptions()
+    chrome_options.add_experimental_option('mobileEmulation', mobile_emulation)
+    context.driver = webdriver.Chrome(options=chrome_options)
+
+    #
+    # context.driver.maximize_window()
     context.driver.implicitly_wait(4)
     context.driver.wait = WebDriverWait(context.driver, timeout=10)
     context.app = Application(context.driver)

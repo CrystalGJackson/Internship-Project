@@ -60,6 +60,8 @@ def open_google(context):
 
 
 
+
+
 @when('Log in to the page')
 def click_login(context):
     sleep(5)
@@ -71,12 +73,27 @@ def click_login(context):
     # context.driver.find_element(By.CSS_SELECTOR,"[class='login-button w-button']").click()
 
 
-@then('Click on "settings" at the left side menu')
-def click_settings(context):
+# @then('Click on "settings" at the left side menu')
+# def click_settings(context):
+#     sleep(15)
+#     context.driver.find_element(By.XPATH, "//span[text()='Settings']").click()
+#     # context.app.login_page.click()
+#     sleep(15)
+
+@then('Click on "market offers"')
+def click_on_market_offers(context):
     sleep(15)
-    context.driver.find_element(By.XPATH, "//span[text()='Settings']").click()
+    context.driver.find_element(By.CSS_SELECTOR,'[class="font-medium text-xs whitespace-nowrap pt-8"]').click()
+    sleep(25)
+
+@then('Click on "menu" at the top left')
+def click_menu(context):
+    sleep(15)
+    context.driver.find_elements(By.CSS_SELECTOR,'[class="new-market-menu-button _1 w-inline-block"]').click()
     # context.app.login_page.click()
     sleep(15)
+
+
 @then('Click on the verification option')
 def click_verification(context):
     sleep(15)
